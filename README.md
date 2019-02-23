@@ -162,6 +162,7 @@ SomeClass
 [SomeModule, SomeClass, BeforeHooks, Object, PP::ObjectMixin, Kernel, BasicObject]
 
 =end
+```
 
 ## TODOs
 * Need help or further research on how to support `before_inherited` as a "before" hook to `inherited` standard ruby method.
