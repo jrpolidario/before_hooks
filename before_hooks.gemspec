@@ -1,38 +1,29 @@
 
-lib = File.expand_path("../lib", __FILE__)
+lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "before_hooks/version"
+require 'before_hooks/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "before_hooks"
+  spec.name          = 'before_hooks'
   spec.version       = BeforeHooks::VERSION
-  spec.authors       = ["Jules Roman B. Polidario"]
-  spec.email         = ["jrpolidario@gmail.com"]
+  spec.authors       = ['Jules Roman Polidario']
+  spec.email         = ['jrpolidario@gmail.com']
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
-  spec.license       = "MIT"
+  spec.summary       = 'Adds `before_extended`, `before_included`, and `before_prepended` methods hooks which would be called before the standard `extended`, `included`, and `prepended` Ruby hooks, respectively.'
+  spec.description   = 'Especially useful when you require to "do" something just before the module gets `extended` or `included` to a module/class. In particular, in my specific case, I needed to "do" something if a specific method already exists in the `base` class.'
+  spec.homepage      = 'https://github.com/jrpolidario/before_hooks'
+  spec.license       = 'MIT'
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
+  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+    f.match(%r{^(test|spec|features)/})
   end
-
-  # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  end
-  spec.bindir        = "exe"
+  spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.require_paths = ['lib']
 
-  spec.add_development_dependency "bundler", "~> 1.16"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.required_ruby_version = '~> 2.0'
+
+  spec.add_development_dependency 'byebug', '~> 9.0'
+  spec.add_development_dependency 'bundler', '~> 1.16'
+  spec.add_development_dependency 'rspec', '~> 3.7.0'
 end

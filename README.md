@@ -1,15 +1,16 @@
 # BeforeHooks
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/before_hooks`. To experiment with that code, run `bin/console` for an interactive prompt.
+Adds `before_extended`, `before_included`, and `before_prepended` methods hooks which would be called before the standard `extended`, `included`, and `prepended` Ruby hooks, respectively.
 
-TODO: Delete this and the text above, and describe your gem
+Especially useful when you require to "do" something just before the module gets `extended`, `included`, or `prepended` to a module/class.
+In particular, in my specific case, I needed to "do" something first if a specific method already exists in the `base` class before being extended, of which then I'd use `before_extended`.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'before_hooks'
+gem 'before_hooks', '~> 0.1'
 ```
 
 And then execute:
@@ -22,7 +23,148 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### `before_included` Example
+
+```ruby
+require 'bundler/setup'
+require 'before_hooks'
+
+module SomeModule
+  # not required to be defined
+  def self.before_included(base)
+    puts 'SomeModule#before_included'
+    pp base
+    pp base.ancestors
+  end
+
+  # not required to be defined:
+  def self.included(base)
+    puts 'SomeModule#included'
+    pp base
+    pp base.ancestors
+  end
+end
+
+class SomeClass
+  include SomeModule
+end
+
+# upon code execution, will print...
+
+=begin
+
+SomeModule#before_included
+SomeClass
+[SomeClass, BeforeHooks, Object, PP::ObjectMixin, Kernel, BasicObject]
+SomeModule#included
+SomeClass
+[SomeClass, SomeModule, BeforeHooks, Object, PP::ObjectMixin, Kernel, BasicObject]
+
+=end
+```
+
+### `before_extended` Example
+
+```ruby
+require 'bundler/setup'
+require 'before_hooks'
+
+module SomeModule
+  # not required to be defined
+  def self.before_extended(base)
+    puts 'SomeModule#before_extended'
+    pp base
+    pp base.singleton_class.ancestors
+  end
+
+  # not required to be defined:
+  def self.extended(base)
+    puts 'SomeModule#extended'
+    pp base
+    pp base.singleton_class.ancestors
+  end
+end
+
+class SomeClass
+  extend SomeModule
+end
+
+# upon code execution, will print...
+
+=begin
+
+SomeModule#before_extended
+SomeClass
+[#<Class:SomeClass>,
+ BeforeHooks::ClassMethods,
+ #<Class:Object>,
+ #<Class:BasicObject>,
+ Class,
+ Module,
+ BeforeHooks,
+ Object,
+ PP::ObjectMixin,
+ Kernel,
+ BasicObject]
+SomeModule#extended
+SomeClass
+[#<Class:SomeClass>,
+ SomeModule,
+ BeforeHooks::ClassMethods,
+ #<Class:Object>,
+ #<Class:BasicObject>,
+ Class,
+ Module,
+ BeforeHooks,
+ Object,
+ PP::ObjectMixin,
+ Kernel,
+ BasicObject]
+
+=end
+```
+
+### `before_prepended` Example
+
+```ruby
+require 'bundler/setup'
+require 'before_hooks'
+
+module SomeModule
+  # not required to be defined
+  def self.before_prepended(base)
+    puts 'SomeModule#before_prepended'
+    pp base
+    pp base.ancestors
+  end
+
+  # not required to be defined:
+  def self.prepended(base)
+    puts 'SomeModule#prepended'
+    pp base
+    pp base.ancestors
+  end
+end
+
+class SomeClass
+  prepend SomeModule
+end
+
+# upon code execution, will print...
+
+=begin
+
+SomeModule#before_prepended
+SomeClass
+[SomeClass, BeforeHooks, Object, PP::ObjectMixin, Kernel, BasicObject]
+SomeModule#prepended
+SomeClass
+[SomeModule, SomeClass, BeforeHooks, Object, PP::ObjectMixin, Kernel, BasicObject]
+
+=end
+
+## TODOs
+* Need help or further research on how to support `before_inherited` as a "before" hook to `inherited` standard ruby method.
 
 ## Development
 
