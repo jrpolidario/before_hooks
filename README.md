@@ -7,6 +7,10 @@ Adds `before_extended`, `before_included`, and `before_prepended` methods hooks 
 Especially useful when you require to "do" something just before the module gets `extended`, `included`, or `prepended` to a module/class.
 In particular, in my specific case, I needed to "do" something first if a specific method already exists in the `base` class before being extended, of which then I'd use `before_extended`.
 
+## Dependencies
+
+* **Ruby ~> 2.0**
+
 ## Installation
 
 Add this line to your application's Gemfile:
