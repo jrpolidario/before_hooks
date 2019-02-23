@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['jrpolidario@gmail.com']
 
   spec.summary       = 'Adds `before_extended`, `before_included`, and `before_prepended` methods hooks which would be called before the standard `extended`, `included`, and `prepended` Ruby hooks, respectively.'
-  spec.description   = 'Especially useful when you require to "do" something just before the module gets `extended` or `included` to a module/class. In particular, in my specific case, I needed to "do" something if a specific method already exists in the `base` class.'
+  spec.description   = 'Adds `before_extended`, `before_included`, and `before_prepended` methods hooks which would be called before the standard `extended`, `included`, and `prepended` Ruby hooks, respectively. Especially useful when you require to "do" something just before the module gets `extended` or `included` to a module/class. In particular, in my specific case, I needed to "do" something if a specific method already exists in the `base` class.'
   spec.homepage      = 'https://github.com/jrpolidario/before_hooks'
   spec.license       = 'MIT'
 
