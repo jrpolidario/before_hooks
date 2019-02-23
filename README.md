@@ -2,10 +2,10 @@
 
 [![Build Status](https://travis-ci.org/jrpolidario/before_hooks.svg?branch=master)](https://travis-ci.org/jrpolidario/before_hooks)
 
-Adds `before_extended`, `before_included`, and `before_prepended` methods hooks which would be called before the standard `extended`, `included`, and `prepended` Ruby hooks, respectively.
-
-Especially useful when you require to "do" something just before the module gets `extended`, `included`, or `prepended` to a module/class.
-In particular, in my specific case, I needed to "do" something first if a specific method already exists in the `base` class before being extended, of which then I'd use `before_extended`.
+Raises error if method already defined to designated `include`, `extend`, or `prepend` base Module/Class.
+Prevents "silent-failures" and indirect bugs caused by overriding functionality (inter-gems-wide), of which you have no control of.
+Take note though that this does not let a module/class to be non-overridable.
+It only promotes and delegates responsibility to the developer to ensure that he/she does not unnecessarily cause "hidden" bugs.
 
 ## Dependencies
 
@@ -171,7 +171,7 @@ SomeClass
 ```
 
 ## TODOs
-* Need help or further research on how to support `before_inherited` as a "before" hook to `inherited` standard ruby method.
+* Need help or further research on how to support and implement `before_inherited`, `before_method_added`, and `before_method_removed`, because "prepend" trick doesn't readily work with them.
 
 ## Development
 

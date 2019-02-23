@@ -122,4 +122,50 @@ RSpec.describe BeforeHooks do
       end
     end
   end
+
+  # # TODO: add a `before_method_added` and `before_method_reoved`; not yet working; couldn't yet think of a solution
+  # context 'when some_method is added to ClassA' do
+  #   let(:classA) do
+  #     Class.new do
+  #       def self.method_added(method_name)
+  #         puts 'ClassA method_added is called!'
+  #       end
+  #     end
+  #   end
+  #
+  #   subject do
+  #     classA.class_eval do
+  #       def some_method
+  #       end
+  #     end
+  #   end
+  #
+  #   context 'when `before_method_added` is defined in ClassA' do
+  #     before do
+  #       classA.class_eval do
+  #         def self.before_method_added(*args)
+  #           puts 'ClassA before_method_added is called!'
+  #         end
+  #       end
+  #     end
+  #
+  #     it 'calls `ClassA.before_method_added` first before `ClassA.method_added`' do
+  #       expect(STDOUT).to receive(:puts).with('ClassA before_method_added is called!').ordered
+  #       expect(STDOUT).to receive(:puts).with('ClassA method_added is called!').ordered
+  #       subject
+  #     end
+  #   end
+  #
+  #   context 'when `before_method_added` is not defined in ModuleA' do
+  #     it 'does not call `ClassA.before_method_added`' do
+  #       expect(STDOUT).to_not receive(:puts).with('ClassA before_method_added is called!')
+  #       subject
+  #     end
+  #
+  #     it 'calls `ClassA.method_added`' do
+  #       expect(STDOUT).to receive(:puts).with('ClassA method_added is called!').ordered
+  #       subject
+  #     end
+  #   end
+  # end
 end
