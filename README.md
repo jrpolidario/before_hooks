@@ -1,5 +1,7 @@
 # BeforeHooks
 
+[![Build Status](https://travis-ci.org/jrpolidario/before_hooks.svg?branch=master)](https://travis-ci.org/jrpolidario/before_hooks)
+
 Adds `before_extended`, `before_included`, and `before_prepended` methods hooks which would be called before the standard `extended`, `included`, and `prepended` Ruby hooks, respectively.
 
 Especially useful when you require to "do" something just before the module gets `extended`, `included`, or `prepended` to a module/class.
