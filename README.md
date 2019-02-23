@@ -32,14 +32,14 @@ require 'before_hooks'
 module SomeModule
   # not required to be defined
   def self.before_included(base)
-    puts 'SomeModule#before_included'
+    pp 'SomeModule#before_included'
     pp base
     pp base.ancestors
   end
 
   # not required to be defined:
   def self.included(base)
-    puts 'SomeModule#included'
+    pp 'SomeModule#included'
     pp base
     pp base.ancestors
   end
@@ -72,14 +72,14 @@ require 'before_hooks'
 module SomeModule
   # not required to be defined
   def self.before_extended(base)
-    puts 'SomeModule#before_extended'
+    pp 'SomeModule#before_extended'
     pp base
     pp base.singleton_class.ancestors
   end
 
   # not required to be defined:
   def self.extended(base)
-    puts 'SomeModule#extended'
+    pp 'SomeModule#extended'
     pp base
     pp base.singleton_class.ancestors
   end
@@ -133,14 +133,14 @@ require 'before_hooks'
 module SomeModule
   # not required to be defined
   def self.before_prepended(base)
-    puts 'SomeModule#before_prepended'
+    pp 'SomeModule#before_prepended'
     pp base
     pp base.ancestors
   end
 
   # not required to be defined:
   def self.prepended(base)
-    puts 'SomeModule#prepended'
+    pp 'SomeModule#prepended'
     pp base
     pp base.ancestors
   end
