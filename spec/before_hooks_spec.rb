@@ -92,7 +92,7 @@ RSpec.describe BeforeHooks do
       end
     end
     let(:classA) { Class.new }
-    subject { classA.prepend moduleA }
+    subject { classA.send(:prepend, moduleA) }
 
     context 'when `before_prepended` is defined in ModuleA' do
       before do

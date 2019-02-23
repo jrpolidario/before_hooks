@@ -3,7 +3,7 @@ require 'before_hooks/version'
 module BeforeHooks
   # `base` is expected to be and should be an `Object`
   def self.prepended(base)
-    base.singleton_class.prepend ClassMethods
+    base.singleton_class.send(:prepend, ClassMethods)
   end
 
   module ClassMethods
@@ -39,4 +39,4 @@ module BeforeHooks
   end
 end
 
-Object.prepend BeforeHooks
+Object.send(:prepend, BeforeHooks)
