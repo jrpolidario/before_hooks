@@ -59,12 +59,12 @@ end
 
 =begin
 
-SomeModule#before_included
+"SomeModule#before_included"
 SomeClass
-[SomeClass, BeforeHooks, Object, PP::ObjectMixin, Kernel, BasicObject]
-SomeModule#included
+[SomeClass, Object, PP::ObjectMixin, Kernel, BasicObject]
+"SomeModule#included"
 SomeClass
-[SomeClass, SomeModule, BeforeHooks, Object, PP::ObjectMixin, Kernel, BasicObject]
+[SomeClass, SomeModule, Object, PP::ObjectMixin, Kernel, BasicObject]
 
 =end
 ```
@@ -99,29 +99,27 @@ end
 
 =begin
 
-SomeModule#before_extended
+"SomeModule#before_extended"
 SomeClass
 [#<Class:SomeClass>,
- BeforeHooks::ClassMethods,
  #<Class:Object>,
  #<Class:BasicObject>,
  Class,
- Module,
  BeforeHooks,
+ Module,
  Object,
  PP::ObjectMixin,
  Kernel,
  BasicObject]
-SomeModule#extended
+"SomeModule#extended"
 SomeClass
 [#<Class:SomeClass>,
  SomeModule,
- BeforeHooks::ClassMethods,
  #<Class:Object>,
  #<Class:BasicObject>,
  Class,
- Module,
  BeforeHooks,
+ Module,
  Object,
  PP::ObjectMixin,
  Kernel,
@@ -160,12 +158,12 @@ end
 
 =begin
 
-SomeModule#before_prepended
+"SomeModule#before_prepended"
 SomeClass
-[SomeClass, BeforeHooks, Object, PP::ObjectMixin, Kernel, BasicObject]
-SomeModule#prepended
+[SomeClass, Object, PP::ObjectMixin, Kernel, BasicObject]
+"SomeModule#prepended"
 SomeClass
-[SomeModule, SomeClass, BeforeHooks, Object, PP::ObjectMixin, Kernel, BasicObject]
+[SomeModule, SomeClass, Object, PP::ObjectMixin, Kernel, BasicObject]
 
 =end
 ```
