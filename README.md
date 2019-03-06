@@ -192,3 +192,11 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the BeforeHooks project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/jrpolidario/before_hooks/blob/master/CODE_OF_CONDUCT.md).
+
+
+## Changelog
+
+* 0.1.4
+    * Now using "dynamic-matching" `.respond_to? :some_method` instead of `.singleton_class.instance_methods.include? :some_method`; thanks to [@jb3689](https://www.reddit.com/r/ruby/comments/atwg8g/just_published_a_small_gem_before_hooks/ehc7851/)
+* 0.1.3
+    * Initial release
