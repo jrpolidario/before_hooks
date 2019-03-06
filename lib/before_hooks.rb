@@ -3,7 +3,7 @@ require 'before_hooks/version'
 module BeforeHooks
   def extend(*modules)
     modules.each do |_module|
-      if _module.singleton_class.instance_methods.include? :before_extended
+      if _module.respond_to? :before_extended
         _module.before_extended(self)
       end
     end
@@ -13,7 +13,7 @@ module BeforeHooks
 
   def include(*modules)
     modules.each do |_module|
-      if _module.singleton_class.instance_methods.include? :before_included
+      if _module.respond_to? :before_included
         _module.before_included(self)
       end
     end
@@ -23,7 +23,7 @@ module BeforeHooks
 
   def prepend(*modules)
     modules.each do |_module|
-      if _module.singleton_class.instance_methods.include? :before_prepended
+      if _module.respond_to? :before_prepended
         _module.before_prepended(self)
       end
     end
