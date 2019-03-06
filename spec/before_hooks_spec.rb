@@ -200,8 +200,12 @@ RSpec.describe BeforeHooks do
 
         it 'calls `ModuleA.before_included` first before `ModuleA.included`' do
           expect(STDOUT).to receive(:puts).with('ModuleA before_included is called!').ordered
-          expect(STDOUT).to_not receive(:puts).with('ExtensibleModule before_included is called!')
           expect(STDOUT).to receive(:puts).with('ModuleA included is called!').ordered
+          subject
+        end
+
+        it 'does not call `ExtensibleModule before_included` and `ExtensibleModule included`' do
+          expect(STDOUT).to_not receive(:puts).with('ExtensibleModule before_included is called!')
           expect(STDOUT).to_not receive(:puts).with('ExtensibleModule included is called!')
           subject
         end
@@ -243,7 +247,7 @@ RSpec.describe BeforeHooks do
         let(:class_a) { Class.new }
         subject { class_a.include module_a }
 
-        it 'calls `ModuleA.before_included` first before `ModuleA.included`' do
+        it 'calls `ModuleA.before_included` first, then `ExtensibleModule before_included`, then `ModuleA included`, and then `ExtensibleModule included`' do
           expect(STDOUT).to receive(:puts).with('ModuleA before_included is called!').ordered
           expect(STDOUT).to receive(:puts).with('ExtensibleModule before_included is called!').ordered
           expect(STDOUT).to receive(:puts).with('ModuleA included is called!').ordered
