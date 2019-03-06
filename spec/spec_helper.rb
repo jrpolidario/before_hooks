@@ -1,6 +1,6 @@
 require 'bundler/setup'
-require 'pry-byebug'
 require 'before_hooks'
+require 'byebug'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
