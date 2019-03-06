@@ -169,6 +169,7 @@ SomeClass
 
 ## TODOs
 * Need help or further research on how to support and implement `before_inherited`, `before_method_added`, and `before_method_removed`, because "prepend" trick doesn't readily work with them.
+* Thanks to [@Valaramech](https://www.reddit.com/r/ruby/comments/atwg8g/just_published_a_small_gem_before_hooks/eh3uyhw/) for suggesting to support "block" DSL, and is now a TODO.
 
 ## Development
 
@@ -179,6 +180,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/jrpolidario/before_hooks. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## Special Thanks
+
+* [@jb3689](https://www.reddit.com/r/ruby/comments/atwg8g/just_published_a_small_gem_before_hooks/ehc7851/) for suggesting to use "dynamic-matching" `.respond_to? :some_method` instead of `.singleton_class.instance_methods.include? :some_method`
 
 ## License
 
